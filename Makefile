@@ -59,3 +59,4 @@ clean:
 	rm -f ps2Swfmin
 	rm -f *~
 	rm -f */*~
+	rm -f main
