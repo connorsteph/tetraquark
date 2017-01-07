@@ -1,0 +1,15 @@
+EP       =  -1.56d-2
+foutWF   =  1
+***********************************************************
+infileWF = outdata/WF_test.dat
+outfileWF= outdata/WF_test.dat
+***********************************************************
+myacc    = 1.d-8
+multEE   = 0.125d0
+ESCALE   = 50.0d0
+MAXIT    = 3
+IPRINT   = 0
+ICON     = 2
+newN     = 100
+resume   = 1
+NC       = 3.0d
