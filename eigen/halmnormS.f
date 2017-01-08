@@ -34,19 +34,19 @@ c update vectors
 
        C(1)=1;C(2)=1;C(3)=1;C(4)=1;C(5)=1;C(6)=1;C(7)=1;C(8)=1
         do i=idxmin,idxmax
-         a1 = ABS(PHI(i,1))
-         b1 = ABS(PHI(i,2))
-         c1 = ABS(PHI(i,3))
-         d1 = ABS(PHI(i,4))
-         e1 = ABS(PHI(i,5))
-         f1 = ABS(PHI(i,6))
+         a1 = (PHI(i,1))
+         b1 = (PHI(i,2))
+         c1 = (PHI(i,3))
+         d1 = (PHI(i,4))
+         e1 = (PHI(i,5))
+         f1 = (PHI(i,6))
          do j=1,N
-          a2 = ABS(PHI(j,1))
-          b2 = ABS(PHI(j,2))
-          c2 = ABS(PHI(j,3))
-          d2 = ABS(PHI(j,4))
-          e2 = ABS(PHI(j,5))
-          f2 = ABS(PHI(j,6))
+          a2 = (PHI(j,1))
+          b2 = (PHI(j,2))
+          c2 = (PHI(j,3))
+          d2 = (PHI(j,4))
+          e2 = (PHI(j,5))
+          f2 = (PHI(j,6))
           
 
           if (i.LE.(N*0.5)) then
