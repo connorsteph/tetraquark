@@ -45,11 +45,9 @@ c start with parameter in the WF.dat file
                  PHI(i,j)=(b-a)*dev+a
               enddo
            enddo
-
-           do i=newN/2+1,newN/2+1+N/2
+           do i=newN/2+1,newN/2+N/2        
               read(9) PHI(i,1),PHI(i,2),PHI(i,3),PHI(i,4),PHI(i,5),PHI(i,6),PHI(i,7)
            enddo
-
            call RANDOM_SEED()
            do i=newN/2+1+N/2,newN
               do j=1,7

@@ -17,8 +17,6 @@ c update vectors
        integer idx6
 
 ***************************************************************
-       val1 = 0.0
-       val2 = 0.0
        if(upidx.eq.0)then
         idxmin = 1
         idxmax = N
@@ -49,8 +47,8 @@ c update vectors
           d2 = (PHI(j,4))
           e2 = (PHI(j,5))
           f2 = (PHI(j,6))
-          
-          do k = 1,8
+          val1 = 0; val2 = 0;
+          do k=1,1
             select case(k)
              case(1) !1234
               ak=a1;bk=b1;ck=c1;dk=d1;ek=e1;fk=f1
@@ -70,7 +68,7 @@ c update vectors
               ak=c1;bk=e1;ck=f1;d1=a1;ek=b1;fk=d1
             end select
   
-            do l =1,8
+            do l=1,1
             select case(l)
              case(1) !1234
               al=a2;bl=b2;cl=c2;dl=d2;el=e2;fl=f2
