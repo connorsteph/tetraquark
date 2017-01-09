@@ -5,4 +5,8 @@
 *.out
 *.txt
 *.dat
+<<<<<<< HEAD
 ./outdata/*.*
+=======
+main
+>>>>>>> 688ba4659a47cb1bd495c10e56e652416045d012
