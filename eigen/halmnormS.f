@@ -10,9 +10,9 @@ c update vectors
        real (8) a1,b1,c1,d1,e1,f1
        real (8) a2,b2,c2,d2,e2,f2
        real (8) al,bl,cl,dl,el,fl
-       real (8) am,bm,cm,dm,em,fm
-       integer i,j,l,m
-       real (8) C(8),Z,val1,val2,kin,pot1,pot2,dig
+       real (8) ak,bk,ck,dk,ek,fk
+       integer i,j,k,l
+       real (8) C(8),Z,val1,val2,kin,pot1,pot2,dig,pfv1,pfv2,kin_part,overlap,pfc
        real (8) f(0:MAXF)
        integer idx6
 
@@ -50,44 +50,44 @@ c update vectors
           e2 = (PHI(j,5))
           f2 = (PHI(j,6))
           
-          do l = 1,8
-            select case(l)
+          do k = 1,8
+            select case(k)
              case(1) !1234
-              al=a1;bl=b1;cl=c1;dl=d1;el=e1;fl=f1
-             case(2) !2134
-              al=d1;bl=e1;cl=a1;dl=f1;el=b1;fl=c1 
-             case(3) !1243
-              al=f1;bl=b1;cl=d1;d1=c1;el=e1;fl=a1
-             case(4) !2143
-              al=c1;bl=e1;cl=f1;d1=a1;el=b1;fl=d1
-             case(5) !3412
-              al=f1;bl=e1;cl=c1;d1=d1;el=b1;fl=a1
-             case(6) !4312
-              al=d1;bl=b1;cl=f1;d1=a1;el=e1;fl=c1
-             case(7) !3421
-              al=a1;bl=e1;cl=d1;d1=c1;el=b1;fl=f1
-             case(8) !4321
-              al=c1;bl=b1;cl=a1;d1=f1;el=e1;fl=d1
+              ak=a1;bk=b1;ck=c1;dk=d1;ek=e1;fk=f1
+             case(2) !3214
+              ak=d1;bk=b1;ck=f1;dk=a1;ek=e1;fk=c1 
+             case(3) !3412
+              ak=f1;bk=b1;ck=d1;d1=c1;ek=e1;fk=a1
+             case(4) !1432
+              ak=c1;bk=b1;ck=a1;d1=f1;ek=e1;fk=d1
+             case(5) !2143
+              ak=a1;bk=e1;ck=d1;d1=c1;ek=b1;fk=f1
+             case(6) !4123
+              ak=d1;bk=e1;ck=a1;d1=f1;ek=b1;fk=c1
+             case(7) !4321
+              ak=f1;bk=e1;ck=c1;d1=d1;ek=b1;fk=a1
+             case(8) !2341
+              ak=c1;bk=e1;ck=f1;d1=a1;ek=b1;fk=d1
             end select
   
-            do m =1,8
-            select case(m)
+            do l =1,8
+            select case(l)
              case(1) !1234
-              am=a1;bm=b1;cm=c1;dm=d1;em=e1;fm=f1
-             case(2) !2134
-              am=d1;bm=e1;cm=a1;dm=f1;em=b1;fm=c1 
-             case(3) !1243
-              am=f1;bm=b1;cm=d1;d1=c1;em=e1;fm=a1
-             case(4) !2143
-              am=c1;bm=e1;cm=f1;d1=a1;em=b1;fm=d1
-             case(5) !3412
-              am=f1;bm=e1;cm=c1;d1=d1;em=b1;fm=a1
-             case(6) !4312
-              am=d1;bm=b1;cm=f1;d1=a1;em=e1;fm=c1
-             case(7) !3421
-              am=a1;bm=e1;cm=d1;d1=c1;em=b1;fm=f1
-             case(8) !4321
-              am=c1;bm=b1;cm=a1;d1=f1;em=e1;fm=d1
+              al=a2;bl=b2;cl=c2;dl=d2;el=e2;fl=f2
+             case(2) !3214
+              al=d2;bl=b2;cl=f2;dl=a2;el=e2;fl=c2 
+             case(3) !3412
+              al=f2;bl=b2;cl=d2;d2=c2;el=e2;fl=a2
+             case(4) !1432
+              al=c2;bl=b2;cl=a2;d2=f2;el=e2;fl=d2
+             case(5) !2143
+              al=a2;bl=e2;cl=d2;d2=c2;el=b2;fl=f2
+             case(6) !4123
+              al=d2;bl=e2;cl=a2;d2=f2;el=b2;fl=c2
+             case(7) !4321
+              al=f2;bl=e2;cl=c2;d2=d2;el=b2;fl=a2
+             case(8) !2341
+              al=c2;bl=e2;cl=f2;d2=a2;el=b2;fl=d2
             end select
 
 
@@ -98,31 +98,33 @@ c              call p_fS(f,a1,b1,c1,d1,e1,f1,a2,b2,c2,d2,e2,f2)
 c              call p_fV(f,a1,b1,c1,d1,e1,f1,a2,b2,c2,d2,e2,f2)
 c              val1=f(idx6(0,0,0,0,0,2))+f(idx6(0,0,0,0,0,-1))
 c              val2=f(idx6(0,0,0,0,0,0))
-              val1=val1+kin_part(al,bl,cl,dl,el,fl,am,bm,cm,dm,em,fm) + pfv1(al,bl,cl,dl,el,fl,am,bm,cm,dm,em,fm)
-              val2=val2+overlap(al,bl,cl,dl,el,fl,am,bm,cm,dm,em,fm)
+              val1=val1+kin_part(ak,bk,ck,dk,ek,fk,al,bl,cl,dl,el,fl) 
+     -             + pfv1(ak,bk,ck,dk,ek,fk,al,bl,cl,dl,el,fl)
+              val2=val2+overlap(ak,bk,ck,dk,ek,fk,al,bl,cl,dl,el,fl)
              else 
 c third Quadrant(w,u)
              val2=0
 c              call p_fC(f,a1,b1,c1,d1,e1,f1,a2,b2,c2,d2,e2,f2)
 c              val1=f(idx6(0,0,1,0,0,0))
-              val1=val1+((-1)**(i+1))*pfc(al,bl,cl,dl,el,fl,am,bm,cm,dm,em,fm)
+              val1=val1+((-1)**(k+1))*pfc(ak,bk,ck,dk,ek,fk,al,bl,cl,dl,el,fl)
              endif 
 
           else 
 c second Quadrant(u,w)
              if (j.LE.(N*0.5)) then
               val2=0
-              call p_fC(f,a1,b1,c1,d1,e1,f1,a2,b2,c2,d2,e2,f2)
+c              call p_fC(f,a1,b1,c1,d1,e1,f1,a2,b2,c2,d2,e2,f2)
 c              val1=f(idx6(0,0,1,0,0,0))
-              val1=val1+((-1)**(j+1))*pfc(al,bl,cl,dl,el,fl,am,bm,cm,dm,em,fm)
+              val1=val1+((-1)**(l+1))*pfc(ak,bk,ck,dk,ek,fk,al,bl,cl,dl,el,fl)
             else 
 c fourth Quadrant(w,w)
 c               call p_fS(f,a1,b1,c1,d1,e1,f1,a2,b2,c2,d2,e2,f2)
 c               call p_fV(f,a1,b1,c1,d1,e1,f1,a2,b2,c2,d2,e2,f2)
 c               val1=f(idx6(0,0,0,0,0,2))+f(idx6(0,0,0,0,-1,0))
 c               val2=f(idx6(0,0,0,0,0,0))
-               val1=val1+kin_part(al,bl,cl,dl,el,fl,am,bm,cm,dm,em,fm)+pfv2(al,bl,cl,dl,el,fl,am,bm,cm,dm,em,fm)
-               val2=val2+((-1)**(i+j))*overlap(al,bl,cl,dl,el,fl,am,bm,cm,dm,em,fm)
+               val1=val1+kin_part(ak,bk,ck,dk,ek,fk,al,bl,cl,dl,el,fl)
+     -              + pfv2(ak,bk,ck,dk,ek,fk,al,bl,cl,dl,el,fl)
+               val2=val2+((-1)**(k+l))*overlap(ak,bk,ck,dk,ek,fk,al,bl,cl,dl,el,fl)
              endif               
           endif
           enddo 
