@@ -1,4 +1,4 @@
-      subroutine p_fS(f,sm,a1,b1,c1,d1,e1,f1,a2,b2,c2,d2,e2,f2)
+      subroutine p_fS(f,a1,b1,c1,d1,e1,f1,a2,b2,c2,d2,e2,f2)
       USE PRMTS
       IMPLICIT NONE
        integer sm,idx6,i,j
@@ -10,7 +10,7 @@
       end subroutine p_fS
 
 *************************************************************************
-      subroutine p_fV(f,sm,a1,b1,c1,d1,e1,f1,a2,b2,c2,d2,e2,f2)
+      subroutine p_fV(f,a1,b1,c1,d1,e1,f1,a2,b2,c2,d2,e2,f2)
       USE PRMTS
       IMPLICIT NONE
       integer sm,idx6
@@ -22,7 +22,7 @@
       end subroutine p_fv
 
 *************************************************************************
-      subroutine p_fC(f,sm,a1,b1,c1,d1,e1,f1,a2,b2,c2,d2,e2,f2)
+      subroutine p_fC(f,a1,b1,c1,d1,e1,f1,a2,b2,c2,d2,e2,f2)
       USE PRMTS
       IMPLICIT NONE
       integer sm,idx6
