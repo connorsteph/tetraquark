@@ -1,35 +1,3 @@
-      subroutine p_fS(f,a1,b1,c1,d1,e1,f1,a2,b2,c2,d2,e2,f2)
-      USE PRMTS
-      IMPLICIT NONE
-       integer sm,idx6,i,j
-       real (8) a1,b1,c1,d1,e1,f1,a2,b2,c2,d2,e2,f2,f(0:MAXF)
-       real (8) overlap,kin_part
-
-       f(idx6(0,0,0,0,0,0)) = overlap(a1,b1,c1,d1,e1,f1,a2,b2,c2,d2,e2,f2) 
-       f(idx6(0,0,0,0,0,2)) = kin_part(a1,b1,c1,d1,e1,f1,a2,b2,c2,d2,e2,f2)
-      end subroutine p_fS
-
-*************************************************************************
-      subroutine p_fV(f,a1,b1,c1,d1,e1,f1,a2,b2,c2,d2,e2,f2)
-      USE PRMTS
-      IMPLICIT NONE
-      integer sm,idx6
-      real (8) a1,b1,c1,d1,e1,f1,a2,b2,c2,d2,e2,f2,f(0:MAXF)
-      real (8) pfv1,pfv2
-      
-      f(idx6(0,0,0,0,0,-1)) = pfv1(a1,b1,c1,d1,e1,f1,a2,b2,c2,d2,e2,f2)
-      f(idx6(0,0,0,0,-1,0)) = pfv2(a1,b1,c1,d1,e1,f1,a2,b2,c2,d2,e2,f2)
-      end subroutine p_fv
-
-*************************************************************************
-      subroutine p_fC(f,a1,b1,c1,d1,e1,f1,a2,b2,c2,d2,e2,f2)
-      USE PRMTS
-      IMPLICIT NONE
-      integer sm,idx6
-      real (8) a1,b1,c1,d1,e1,f1,a2,b2,c2,d2,e2,f2,f(0:MAXF)
-      real (8) pfc
-      	f(idx6(0,0,1,0,0,0)) = pfc(a1,b1,c1,d1,e1,f1,a2,b2,c2,d2,e2,f2)
-      end subroutine p_fC
 *************************************************************************
       real(8) function PF1(a,b,c,d,e,f)
       implicit none

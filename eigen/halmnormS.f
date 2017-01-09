@@ -12,10 +12,7 @@ c update vectors
        real (8) al,bl,cl,dl,el,fl
        real (8) ak,bk,ck,dk,ek,fk
        integer i,j,k,l
-       real (8) C(8),Z,val1,val2,kin,pot1,pot2,dig,pfv1,pfv2,kin_part,overlap,pfc
-       real (8) f(0:MAXF)
-       integer idx6
-
+       real (8) val1,val2,pfv1,pfv2,kin_part,overlap,pfc
 ***************************************************************
        if(upidx.eq.0)then
         idxmin = 1
@@ -48,7 +45,7 @@ c update vectors
           e2 = (PHI(j,5))
           f2 = (PHI(j,6))
           val1 = 0; val2 = 0;
-          do k=1,1
+          do k=3,3
             select case(k)
              case(1) !1234
               ak=a1;bk=b1;ck=c1;dk=d1;ek=e1;fk=f1
@@ -68,7 +65,7 @@ c update vectors
               ak=c1;bk=e1;ck=f1;d1=a1;ek=b1;fk=d1
             end select
   
-            do l=1,1
+            do l=3,3
             select case(l)
              case(1) !1234
               al=a2;bl=b2;cl=c2;dl=d2;el=e2;fl=f2
@@ -92,18 +89,12 @@ c update vectors
           if (i.LE.(N*0.5)) then
 c first Quadrant(u,u)
              if (j.LE.(N*0.5)) then
-c              call p_fS(f,a1,b1,c1,d1,e1,f1,a2,b2,c2,d2,e2,f2)
-c              call p_fV(f,a1,b1,c1,d1,e1,f1,a2,b2,c2,d2,e2,f2)
-c              val1=f(idx6(0,0,0,0,0,2))+f(idx6(0,0,0,0,0,-1))
-c              val2=f(idx6(0,0,0,0,0,0))
               val1=val1+kin_part(ak,bk,ck,dk,ek,fk,al,bl,cl,dl,el,fl) 
      -             + pfv1(ak,bk,ck,dk,ek,fk,al,bl,cl,dl,el,fl)
               val2=val2+overlap(ak,bk,ck,dk,ek,fk,al,bl,cl,dl,el,fl)
              else 
 c third Quadrant(w,u)
              val2=0
-c              call p_fC(f,a1,b1,c1,d1,e1,f1,a2,b2,c2,d2,e2,f2)
-c              val1=f(idx6(0,0,1,0,0,0))
               val1=val1+((-1)**(k+1))*pfc(ak,bk,ck,dk,ek,fk,al,bl,cl,dl,el,fl)
              endif 
 
@@ -111,17 +102,11 @@ c              val1=f(idx6(0,0,1,0,0,0))
 c second Quadrant(u,w)
              if (j.LE.(N*0.5)) then
               val2=0
-c              call p_fC(f,a1,b1,c1,d1,e1,f1,a2,b2,c2,d2,e2,f2)
-c              val1=f(idx6(0,0,1,0,0,0))
               val1=val1+((-1)**(l+1))*pfc(ak,bk,ck,dk,ek,fk,al,bl,cl,dl,el,fl)
             else 
 c fourth Quadrant(w,w)
-c               call p_fS(f,a1,b1,c1,d1,e1,f1,a2,b2,c2,d2,e2,f2)
-c               call p_fV(f,a1,b1,c1,d1,e1,f1,a2,b2,c2,d2,e2,f2)
-c               val1=f(idx6(0,0,0,0,0,2))+f(idx6(0,0,0,0,-1,0))
-c               val2=f(idx6(0,0,0,0,0,0))
-               val1=val1+kin_part(ak,bk,ck,dk,ek,fk,al,bl,cl,dl,el,fl)
-     -              + pfv2(ak,bk,ck,dk,ek,fk,al,bl,cl,dl,el,fl)
+               val1=val1+((-1)**(k+l))*(kin_part(ak,bk,ck,dk,ek,fk,al,bl,cl,dl,el,fl)
+     -              +pfv2(ak,bk,ck,dk,ek,fk,al,bl,cl,dl,el,fl))
                val2=val2+((-1)**(k+l))*overlap(ak,bk,ck,dk,ek,fk,al,bl,cl,dl,el,fl)
              endif               
           endif
