@@ -87,15 +87,8 @@ c how many elements to update
         write(*,*) 'oldF,F: ',oldF,F,oldF-F
         if(ABS(oldF-F) < myacc) then
          write(*,*) 'Accuracy changed'
-c         counter = counter+1
          multEE = multEE*0.5d0 
          myacc = myacc*0.5d0
-c         if (counter > 5) then
-c            NC = NC*2
-c            write (*,*) "Colour number has been chanced to ", NC
-c            counter = 0
-c            myacc = origmyacc
-c         endif
          endif
          oldF = F
         endif

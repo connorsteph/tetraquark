@@ -11,5 +11,5 @@ MAXIT    = 3
 IPRINT   = 0
 ICON     = 1
 newN     = 50
-resume   = 0
+resume   = 1
 NC       = 3.0d

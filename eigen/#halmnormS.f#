@@ -64,7 +64,7 @@
               aq=c1;bq=e1;cq=f1;dq=a1;eq=b1;fq=d1
             end select
   
-            do r=3,5
+            do r=
             select case(r)
              case(1) !1234
               ar=a2;br=b2;cr=c2;dr=d2;er=e2;fr=f2
