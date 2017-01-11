@@ -87,24 +87,24 @@
 
 
           if (i.LE.(N*0.5)) then
-c first Quadrant(u,u)
+c upper left quadrant(u,u)
              if (j.LE.(N*0.5)) then
               val1=val1+kin_part(aq,bq,cq,dq,eq,fq,ar,br,cr,dr,er,fr) 
      -             + pfv1(aq,bq,cq,dq,eq,fq,ar,br,cr,dr,er,fr)
               val2=val2+overlap(aq,bq,cq,dq,eq,fq,ar,br,cr,dr,er,fr)
              else 
-c second Quadrant(u,w)
+c upper right quadrant(u,w)
              val2=0
               val1=val1+((-1)**(r+1))*pfc(aq,bq,cq,dq,eq,fq,ar,br,cr,dr,er,fr)
              endif 
 
           else 
-c third Quadrant(w,u)
+c lower left  quadrant(w,u)
              if (j.LE.(N*0.5)) then
               val2=0
               val1=val1+((-1)**(q+1))*pfc(aq,bq,cq,dq,eq,fq,ar,br,cr,dr,er,fr)
             else 
-c fourth Quadrant(w,w)
+c lower right quadrant(w,w)
                val1=val1+((-1)**(q+r))*(kin_part(aq,bq,cq,dq,eq,fq,ar,br,cr,dr,er,fr)
      -              +pfv2(aq,bq,cq,dq,eq,fq,ar,br,cr,dr,er,fr))
                val2=val2+((-1)**(q+r))*overlap(aq,bq,cq,dq,eq,fq,ar,br,cr,dr,er,fr)

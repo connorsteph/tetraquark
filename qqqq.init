@@ -1,4 +1,4 @@
-EP       =  -3.15d-3
+EP       =  -3.18d-3
 foutWF   =  1
 ***********************************************************
 infileWF = outdata/WF.dat
@@ -10,6 +10,6 @@ ESCALE   = 50.0d0
 MAXIT    = 3
 IPRINT   = 0
 ICON     = 1
-newN     = 50
+newN     = 20
 resume   = 1
 NC       = 3.0d
