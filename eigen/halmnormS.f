@@ -42,9 +42,10 @@
           d2 = PHI(j,4)
           e2 = PHI(j,5)
           f2 = PHI(j,6)
+
           val1 = 0; val2 = 0;
           
-          do q=3,5
+          do q=1,8
             select case(q)
              case(1) !1234
               aq=a1;bq=b1;cq=c1;dq=d1;eq=e1;fq=f1
@@ -64,7 +65,7 @@
               aq=c1;bq=e1;cq=f1;dq=a1;eq=b1;fq=d1
             end select
   
-            do r=3,5
+            do r=1,8
             select case(r)
              case(1) !1234
               ar=a2;br=b2;cr=c2;dr=d2;er=e2;fr=f2
@@ -92,13 +93,13 @@ c first Quadrant(u,u)
      -             + pfv1(aq,bq,cq,dq,eq,fq,ar,br,cr,dr,er,fr)
               val2=val2+overlap(aq,bq,cq,dq,eq,fq,ar,br,cr,dr,er,fr)
              else 
-c third Quadrant(w,u)
+c second Quadrant(u,w)
              val2=0
               val1=val1+((-1)**(r+1))*pfc(aq,bq,cq,dq,eq,fq,ar,br,cr,dr,er,fr)
              endif 
 
           else 
-c second Quadrant(u,w)
+c third Quadrant(w,u)
              if (j.LE.(N*0.5)) then
               val2=0
               val1=val1+((-1)**(q+1))*pfc(aq,bq,cq,dq,eq,fq,ar,br,cr,dr,er,fr)
