@@ -1,8 +1,8 @@
 EP       =  -3.18d-3
 foutWF   =  1
 ***********************************************************
-infileWF = outdata/WF.dat
-outfileWF= outdata/WF.dat
+infileWF = outdata/WF_12.dat
+outfileWF= outdata/WF_12.dat
 ***********************************************************
 myacc    = 1.d-8
 multEE   = 0.125d0
@@ -10,6 +10,6 @@ ESCALE   = 50.0d0
 MAXIT    = 3
 IPRINT   = 0
 ICON     = 1
-newN     = 20
+newN     = 100
 resume   = 1
-NC       = 3.0d
+NC       = 12.0d
