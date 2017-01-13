@@ -81,8 +81,8 @@
       use tables
       implicit none
       real(8) a1,b1,c1,d1,e1,f1,a2,b2,c2,d2,e2,f2
-      real(8) a,b,c,de,e,f,exact_part
-      real(8) Frinv,Fsuper,pd12,pd13,pd14,pd23,pd24,pd34
+      real(8) a,b,c,de,e,f
+      real(8) Frinv,pd12,pd13,pd14,pd23,pd24,pd34
       a=a1+a2;b=b1+b2;c=c1+c2;de=d1+d2;e=e1+e2;f=f1+f2
 
       pd12=Frinv(c,b,a,f,e,de)
@@ -102,7 +102,7 @@
       implicit none
       real(8) a1,b1,c1,d1,e1,f1,a2,b2,c2,d2,e2,f2
       real(8) a,b,c,de,e,f
-      real(8) Frinv,pd12,pd13,pd14,pd23,pd24,pd34,exact_part
+      real(8) Frinv,pd12,pd13,pd14,pd23,pd24,pd34
       
       a=a1+a2;b=b1+b2;c=c1+c2;de=d1+d2;e=e1+e2;f=f1+f2
       

@@ -4,7 +4,7 @@
 
        real (8) VPHI(N,6),V(N)
        CHARACTER( LEN = 30 ) :: out_file
-       integer i,j
+       integer i
 
        WRITE(*,*) 'Writing file : ', out_file
        OPEN(UNIT=9,FILE=out_file,FORM='UNFORMATTED')

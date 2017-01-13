@@ -5,13 +5,13 @@
       integer NN
       real(8) F,X(NN)
 
-      INTEGER I,J,S,T,K,l
+      INTEGER I,J,K
       real (8) SUM1,SUM2,tau
-      real (8) V(N),V0(N),VV(N),EE,EE2,TMP
-      real (8) p(N),b(N),VHH(N),VDN(N),VHHOLD(N),VDNOLD(N),u(N),dd(N)
+      real (8) V(N),V0(N),EE,EE2,TMP
+      real (8) VHH(N),VDN(N),VHHOLD(N),VDNOLD(N),u(N)
       LOGICAL sing
 
-      INTEGER IPIV(N),ITMAX
+      INTEGER ITMAX
 
       ITMAX=40
 

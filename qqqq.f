@@ -3,13 +3,8 @@ C***********************************************************************
       USE PRMTS
       IMPLICIT NONE
     
-      real (8) F,tmp
-      integer IT
-      real (8) LBOUND,MAXSTEP
-      real (8) :: origmyacc
-
-       integer NN,nfcc,i,j,k,counter
-
+      real (8) F
+       integer NN,nfcc,j,k
        real (8), DIMENSION(:), ALLOCATABLE :: EE,X
        CHARACTER( LEN =30 ) :: in_file
 
@@ -55,7 +50,6 @@ c current block 1..N
 
 
       write(*,*) 'Optimize ..... '
-      origmyacc = myacc
       do while (myacc.ne.0.0)
 
        if(k.eq.1) then 

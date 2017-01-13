@@ -89,9 +89,9 @@
           if (i.LE.(N*0.5)) then
 c upper left quadrant(u,u)
              if (j.LE.(N*0.5)) then
-              val1=val1+kin_part(aq,bq,cq,dq,eq,fq,ar,br,cr,dr,er,fr) 
-     -             + pfv1(aq,bq,cq,dq,eq,fq,ar,br,cr,dr,er,fr)
-              val2=val2+overlap(aq,bq,cq,dq,eq,fq,ar,br,cr,dr,er,fr)
+              val1=val1+((1)**(q+r))*(kin_part(aq,bq,cq,dq,eq,fq,ar,br,cr,dr,er,fr) 
+     -             + pfv1(aq,bq,cq,dq,eq,fq,ar,br,cr,dr,er,fr))
+              val2=val2+((1)**(q+r))*overlap(aq,bq,cq,dq,eq,fq,ar,br,cr,dr,er,fr)
              else 
 c upper right quadrant(u,w)
              val2=0

@@ -26,7 +26,7 @@ C  (C) Copr. 1986-92 Numerical Recipes Software Vs94z&):9+X%1j49#:`*.
       INTEGER n,np
       real (8) r(np,np),qt(np,np),b(n)
       INTEGER i,j
-      real (8) b2(n),sum,tau
+      real (8) b2(n),sum
 
       do i=1,N
        b2(i)=0.d0

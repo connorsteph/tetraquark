@@ -1,5 +1,5 @@
-OPTS  = --wide --info --parallel -c 
-OPTSF = --wide --info --parallel -o
+OPTS  = -c --info --g --wide
+OPTSF = -o --info --g --wide
 
 all: o1 main
 
