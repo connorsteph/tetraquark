@@ -90,22 +90,22 @@
 c uppper left(u,u)
              select case(modulo(q,4))
                 case(0)
-                   signi=1.d0
+                   signi=-1.d0
                 case(1)
                    signi=1.d0
                 case(2)
-                   signi=-1.d0
+                   signi=1.d0
                 case(3)
                    signi=-1.d0
                 end select
              if (j.LE.(N*0.5)) then
                 select case(modulo(r,4))
                 case(0)
-                   signj=1.d0
+                   signj=-1.d0
                 case(1)
                    signj=1.d0
                 case(2)
-                   signj=-1.d0
+                   signj=1.d0
                 case(3)
                    signj=-1.d0
                 end select
@@ -125,11 +125,11 @@ c lower left(w,u)
              if (j.LE.(N*0.5)) then
               select case(modulo(r,4))
                 case(0)
-                   signj=1.d0
+                   signj=-1.d0
                 case(1)
                    signj=1.d0
                 case(2)
-                   signj=-1.d0
+                   signj=1.d0
                 case(3)
                    signj=-1.d0
                 end select
@@ -143,7 +143,7 @@ c lower right(w,w)
                val2=val2+((-1)**(q+r))*overlap(aq,bq,cq,dq,eq,fq,ar,br,cr,dr,er,fr)
              endif               
           endif
-        
+
           enddo 
           enddo
         
