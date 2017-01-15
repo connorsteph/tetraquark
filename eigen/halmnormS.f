@@ -44,7 +44,7 @@
           f2 = PHI(j,6)
           val1 = 0; val2 = 0;
           
-          do q=3,5
+          do q=1,8
             select case(q)
              case(1) !1234
               aq=a1;bq=b1;cq=c1;dq=d1;eq=e1;fq=f1
@@ -56,15 +56,15 @@
               aq=c1;bq=b1;cq=a1;dq=f1;eq=e1;fq=d1
              case(5) !2143
               aq=a1;bq=e1;cq=d1;dq=c1;eq=b1;fq=f1
-             case(6) !4123
+             case(6) !2341
               aq=d1;bq=e1;cq=a1;dq=f1;eq=b1;fq=c1
              case(7) !4321
               aq=f1;bq=e1;cq=c1;dq=d1;eq=b1;fq=a1
-             case(8) !2341
+             case(8) !4123
               aq=c1;bq=e1;cq=f1;dq=a1;eq=b1;fq=d1
             end select
   
-            do r=3,5
+            do r=1,8
             select case(r)
              case(1) !1234
               ar=a2;br=b2;cr=c2;dr=d2;er=e2;fr=f2
@@ -76,34 +76,34 @@
               ar=c2;br=b2;cr=a2;dr=f2;er=e2;fr=d2
              case(5) !2143
               ar=a2;br=e2;cr=d2;dr=c2;er=b2;fr=f2
-             case(6) !4123
+             case(6) !2341
               ar=d2;br=e2;cr=a2;dr=f2;er=b2;fr=c2
              case(7) !4321
               ar=f2;br=e2;cr=c2;dr=d2;er=b2;fr=a2
-             case(8) !2341
+             case(8) !4123
               ar=c2;br=e2;cr=f2;dr=a2;er=b2;fr=d2
             end select
 
 
           if (i.LE.(N*0.5)) then
-c first Quadrant(u,u)
+c uppper left(u,u)
              if (j.LE.(N*0.5)) then
               val1=val1+kin_part(aq,bq,cq,dq,eq,fq,ar,br,cr,dr,er,fr) 
      -             + pfv1(aq,bq,cq,dq,eq,fq,ar,br,cr,dr,er,fr)
               val2=val2+overlap(aq,bq,cq,dq,eq,fq,ar,br,cr,dr,er,fr)
              else 
-c third Quadrant(w,u)
+c upper right(u,w)
              val2=0
               val1=val1+((-1)**(r+1))*pfc(aq,bq,cq,dq,eq,fq,ar,br,cr,dr,er,fr)
              endif 
 
           else 
-c second Quadrant(u,w)
+c lower left(w,u)
              if (j.LE.(N*0.5)) then
               val2=0
               val1=val1+((-1)**(q+1))*pfc(aq,bq,cq,dq,eq,fq,ar,br,cr,dr,er,fr)
             else 
-c fourth Quadrant(w,w)
+c lower right(w,w)
                val1=val1+((-1)**(q+r))*(kin_part(aq,bq,cq,dq,eq,fq,ar,br,cr,dr,er,fr)
      -              +pfv2(aq,bq,cq,dq,eq,fq,ar,br,cr,dr,er,fr))
                val2=val2+((-1)**(q+r))*overlap(aq,bq,cq,dq,eq,fq,ar,br,cr,dr,er,fr)
