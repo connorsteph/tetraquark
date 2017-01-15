@@ -11,6 +11,7 @@
        real (8) aq,bq,cq,dq,eq,fq
        integer i,j,q,r
        real (8) val1,val2,pfv1,pfv2,kin_part,overlap,pfc
+       real(8) signi,signj
 ***************************************************************
        if(upidx.eq.0)then
         idxmin = 1
@@ -50,18 +51,18 @@
               aq=a1;bq=b1;cq=c1;dq=d1;eq=e1;fq=f1
              case(2) !3214
               aq=d1;bq=b1;cq=f1;dq=a1;eq=e1;fq=c1 
-             case(3) !3412
-              aq=f1;bq=b1;cq=d1;dq=c1;eq=e1;fq=a1
-              case(4) !1432
+             case(3) !1432
               aq=c1;bq=b1;cq=a1;dq=f1;eq=e1;fq=d1
+              case(4) !3412
+              aq=f1;bq=b1;cq=d1;dq=c1;eq=e1;fq=a1
              case(5) !2143
               aq=a1;bq=e1;cq=d1;dq=c1;eq=b1;fq=f1
              case(6) !2341
               aq=d1;bq=e1;cq=a1;dq=f1;eq=b1;fq=c1
-             case(7) !4321
-              aq=f1;bq=e1;cq=c1;dq=d1;eq=b1;fq=a1
-             case(8) !4123
+             case(7) !4123
               aq=c1;bq=e1;cq=f1;dq=a1;eq=b1;fq=d1
+             case(8) !4321
+              aq=f1;bq=e1;cq=c1;dq=d1;eq=b1;fq=a1
             end select
   
             do r=1,8
@@ -70,38 +71,71 @@
               ar=a2;br=b2;cr=c2;dr=d2;er=e2;fr=f2
              case(2) !3214
               ar=d2;br=b2;cr=f2;dr=a2;er=e2;fr=c2 
-             case(3) !3412
-              ar=f2;br=b2;cr=d2;dr=c2;er=e2;fr=a2
-             case(4) !1432
+             case(3) !1432
               ar=c2;br=b2;cr=a2;dr=f2;er=e2;fr=d2
+              case(4) !3412
+              ar=f2;br=b2;cr=d2;dr=c2;er=e2;fr=a2
              case(5) !2143
               ar=a2;br=e2;cr=d2;dr=c2;er=b2;fr=f2
              case(6) !2341
               ar=d2;br=e2;cr=a2;dr=f2;er=b2;fr=c2
-             case(7) !4321
-              ar=f2;br=e2;cr=c2;dr=d2;er=b2;fr=a2
-             case(8) !4123
+             case(7) !4123
               ar=c2;br=e2;cr=f2;dr=a2;er=b2;fr=d2
+             case(8) !4321
+              ar=f2;br=e2;cr=c2;dr=d2;er=b2;fr=a2
             end select
 
 
           if (i.LE.(N*0.5)) then
 c uppper left(u,u)
+             select case(modulo(q,4))
+                case(0)
+                   signi=1.d0
+                case(1)
+                   signi=1.d0
+                case(2)
+                   signi=-1.d0
+                case(3)
+                   signi=-1.d0
+                end select
              if (j.LE.(N*0.5)) then
-              val1=val1+kin_part(aq,bq,cq,dq,eq,fq,ar,br,cr,dr,er,fr) 
-     -             + pfv1(aq,bq,cq,dq,eq,fq,ar,br,cr,dr,er,fr)
-              val2=val2+overlap(aq,bq,cq,dq,eq,fq,ar,br,cr,dr,er,fr)
+                select case(modulo(r,4))
+                case(0)
+                   signj=1.d0
+                case(1)
+                   signj=1.d0
+                case(2)
+                   signj=-1.d0
+                case(3)
+                   signj=-1.d0
+                end select
+              val1=val1+signi*signj*(kin_part(aq,bq,cq,dq,eq,fq,ar,br,cr,dr,er,fr) 
+     -             + pfv1(aq,bq,cq,dq,eq,fq,ar,br,cr,dr,er,fr))
+              
+              val2=val2+signi*signj*overlap(aq,bq,cq,dq,eq,fq,ar,br,cr,dr,er,fr)
              else 
-c upper right(u,w)
+c upper right(u,w)  
              val2=0
-              val1=val1+((-1)**(r+1))*pfc(aq,bq,cq,dq,eq,fq,ar,br,cr,dr,er,fr)
+              val1=val1+signi*((-1)**(r+1))*pfc(aq,bq,cq,dq,eq,fq,ar,br,cr,dr,er,fr)
              endif 
 
           else 
+            
 c lower left(w,u)
              if (j.LE.(N*0.5)) then
+              select case(modulo(r,4))
+                case(0)
+                   signj=1.d0
+                case(1)
+                   signj=1.d0
+                case(2)
+                   signj=-1.d0
+                case(3)
+                   signj=-1.d0
+                end select
+  
               val2=0
-              val1=val1+((-1)**(q+1))*pfc(aq,bq,cq,dq,eq,fq,ar,br,cr,dr,er,fr)
+              val1=val1+signj*((-1)**(q+1))*pfc(aq,bq,cq,dq,eq,fq,ar,br,cr,dr,er,fr)
             else 
 c lower right(w,w)
                val1=val1+((-1)**(q+r))*(kin_part(aq,bq,cq,dq,eq,fq,ar,br,cr,dr,er,fr)

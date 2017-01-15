@@ -42,7 +42,7 @@ c start with parameter in the WF.dat file
            do i=N/2+1,newN/2
               do j=1,7
                  call RANDOM_NUMBER(dev)
-                 PHI(i,j)=(b-a)*dev+a
+                 PHI(i,j)=dev*0.1
               enddo
            enddo
            do i=newN/2+1,newN/2+N/2        
@@ -52,7 +52,7 @@ c start with parameter in the WF.dat file
            do i=newN/2+1+N/2,newN
               do j=1,7
                  call RANDOM_NUMBER(dev)
-                 PHI(i,j)=(b-a)*dev+a
+                 PHI(i,j)=dev*0.1
               enddo
            enddo
       else
@@ -63,7 +63,7 @@ c start with pseudo random variable
          do i=1,newN
             do j=1,7
                call RANDOM_NUMBER(dev)
-               PHI(i,j)=(b-a)*dev+a
+               PHI(i,j)=dev*0.1
             enddo
          enddo
        endif
