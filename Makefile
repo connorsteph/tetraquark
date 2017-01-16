@@ -1,5 +1,5 @@
-OPTS  = --wide --info --parallel -c 
-OPTSF = --wide --info --parallel -o
+OPTS  = --wide --parallel -c 
+OPTSF = --wide --parallel -o
 
 all: o1 main
 
@@ -56,7 +56,6 @@ main: qqqq.f o1
 clean:
 	rm -f *.o
 	rm -f *.mod
-	rm -f ps2Swfmin
 	rm -f *~
 	rm -f */*~
 	rm -f main

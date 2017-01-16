@@ -1,8 +1,8 @@
 EP       =  -3.279d-3
 foutWF   =  1
 ***********************************************************
-infileWF = outdata/WF_test.dat
-outfileWF= outdata/WF_test.dat
+infileWF = outdata/WF_NC_3_200.dat
+outfileWF= outdata/WF_NC_3_400.dat
 ***********************************************************
 myacc    = 1.d-8
 multEE   = 0.125d0
@@ -10,6 +10,6 @@ ESCALE   = 50.0d0
 MAXIT    = 3
 IPRINT   = 0
 ICON     = 1
-newN     = 50
+newN     = 400
 resume   = 1
 NC       = 3.0d

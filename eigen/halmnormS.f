@@ -99,7 +99,7 @@ c upper right quadrant(u,w)
              endif 
 
           else 
-c lower left  quadrant(w,u)
+c lower left quadrant(w,u)
              if (j.LE.(N*0.5)) then
               val2=0
               val1=val1+((-1)**(q+1))*pfc(aq,bq,cq,dq,eq,fq,ar,br,cr,dr,er,fr)
