@@ -10,6 +10,6 @@ ESCALE   = 50.0d0
 MAXIT    = 3
 IPRINT   = 0
 ICON     = 1
-newN     = 50
+newN     = 100
 resume   = 1
 NC       = 3.0d
