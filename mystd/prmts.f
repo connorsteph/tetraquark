@@ -33,6 +33,7 @@ c       NC is the number of color
         INTEGER MAXF
         PARAMETER(MAXF=10000)
         real(8), parameter :: pi=3.1415926535897932384626433832795d0
+        integer,parameter::NPAR=6
        END MODULE PRMTS
 
 *************************************************************

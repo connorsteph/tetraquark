@@ -1,8 +1,9 @@
        SUBROUTINE outWF(VPHI,V,out_file)
        USE TABLES
+       USE PRMTS
        IMPLICIT NONE
 
-       real (8) VPHI(N,6),V(N)
+       real (8) VPHI(N,NPAR),V(N)
        CHARACTER( LEN = 30 ) :: out_file
        integer i,j
 
@@ -13,7 +14,7 @@
        write(9) BSTE
        write(9) NC
        do i=1,N
-        write(9) VPHI(i,1),VPHI(i,2),VPHI(i,3),VPHI(i,4),VPHI(i,5),VPHI(i,6),V(i)
+        write(9) (VPHI(i,j),j=1,NPAR),V(i)
        enddo
 
        CLOSE(9)

@@ -1,4 +1,4 @@
-C***********************************************************************
+***********************************************************************
       USE TABLES
       USE PRMTS
       IMPLICIT NONE
@@ -46,7 +46,7 @@ c     Set EP to quarkonia energy
        oldF = F
 ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 
-      NN = 6
+      NN = NPAR
 
       ALLOCATE(X(NN))
       ALLOCATE(EE(NN))

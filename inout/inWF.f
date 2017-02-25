@@ -1,5 +1,6 @@
        SUBROUTINE inWF(in_file,switch)
        USE TABLES
+       USE PRMTS
        IMPLICIT NONE
 
        CHARACTER( LEN = 30 ) :: in_file
@@ -25,17 +26,17 @@
           write(*,*) 'Going from file WF'
 c start with parameter in the WF.dat file
           do i=1,N/2
-             read(9) PHI(i,1),PHI(i,2),PHI(i,3),PHI(i,4),PHI(i,5),PHI(i,6),PHI(i,7)
+             read(9) (PHI(i,j),j=1,NPAR+1)
           enddo
           
           do i=newN/2+1,newN
-             read(9) PHI(i,1),PHI(i,2),PHI(i,3),PHI(i,4),PHI(i,5),PHI(i,6),PHI(i,7)
+             read(9) (PHI(i,j),j=1,NPAR+1)
           enddo
 
         else if (switch.eq.1) then
            write(*,*) 'Adding random parameters to file WF'
            do i=1,N/2
-              read(9) PHI(i,1),PHI(i,2),PHI(i,3),PHI(i,4),PHI(i,5),PHI(i,6),PHI(i,7)
+              read(9) (PHI(i,j),j=1,NPAR+1)
            enddo
            
            call RANDOM_SEED()
@@ -46,7 +47,7 @@ c start with parameter in the WF.dat file
               enddo
            enddo
            do i=newN/2+1,newN/2+N/2        
-              read(9) PHI(i,1),PHI(i,2),PHI(i,3),PHI(i,4),PHI(i,5),PHI(i,6),PHI(i,7)
+              read(9) (PHI(i,j),j=1,NPAR+1)
            enddo
            call RANDOM_SEED()
            do i=newN/2+1+N/2,newN
