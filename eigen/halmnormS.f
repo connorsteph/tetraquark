@@ -88,7 +88,7 @@
           if (i.LE.(N*0.5)) then
 c uppper left(u,u)
              if (j.LE.(N*0.5)) then
-
+                
               val1=val1+signu(q)*signu(r)*(kin_part(aq,bq,cq,dq,eq,fq,ar,br,cr,dr,er,fr) 
      -             + pfv1(aq,bq,cq,dq,eq,fq,ar,br,cr,dr,er,fr))
               val2=val2+signu(q)*signu(r)*overlap(aq,bq,cq,dq,eq,fq,ar,br,cr,dr,er,fr)
@@ -111,7 +111,7 @@ c lower right(w,w)
                val2=val2+signw(q)*signw(r)*overlap(aq,bq,cq,dq,eq,fq,ar,br,cr,dr,er,fr)
              endif               
           endif
-
+          
           enddo 
           enddo
 c        write(*,*) i,j,'val2 is',val2
