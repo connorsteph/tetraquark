@@ -92,7 +92,7 @@
       pd24=Frinv(a,de,e,b,c,f)
       pd34=Frinv(b,de,f,a,c,e)
 
-      pfv1=(NC**2-1)*(pd12+pd34+pd14+pd23)/NC-(NC-1)*(2*pd13+2*pd24-pd23-pd34-pd12)/NC
+      pfv1=(NC**2-1)*(pd12+pd34+pd14+pd23)/NC-(NC-1)*(2*pd13+2*pd24-pd23-pd34-pd12-pd14)/NC
       pfv1=pfv1*(-0.25)
       end function
 *************************************************************************
@@ -113,7 +113,7 @@
       pd24=Frinv(a,de,e,b,c,f)
       pd34=Frinv(b,de,f,a,c,e)
       
-      pfv2=(NC**2-1)*(pd12+pd34+pd14+pd23)/NC+(NC+1)*(2*pd13+2*pd24-pd23-pd34-pd12)/NC
+      pfv2=(NC**2-1)*(pd12+pd34+pd14+pd23)/NC+(NC+1)*(2*pd13+2*pd24-pd23-pd34-pd12-pd14)/NC
       pfv2=pfv2*(-0.25)
       
       return
