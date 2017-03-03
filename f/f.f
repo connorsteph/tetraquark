@@ -55,26 +55,26 @@
       return
       end function
 *************************************************************************
-       real(8) function kin_part(a1,b1,c1,d1,e1,f1,a2,b2,c2,d2,e2,f2)
-       use prmts
-       implicit none
-       real(8) a1,b1,c1,d1,e1,f1,a2,b2,c2,d2,e2,f2
-       real(8) a,b,c,d,e,f,overlap,Fr2,F3,sum,T12,T13,T14,T23,T24,T34
+      real(8) function kin_part(a1,b1,c1,d1,e1,f1,a2,b2,c2,d2,e2,f2)
+      use prmts
+      implicit none
+      real(8) a1,b1,c1,d1,e1,f1,a2,b2,c2,d2,e2,f2
+      real(8) a,b,c,d,e,f,overlap,Fr2,F3,sum,T12,T13,T14,T23,T24,T34
 
-       a=a1+a2;b=b1+b2;c=c1+c2;d=d1+d2;e=e1+e2;f=f1+f2
-       sum=a1+b1+c1+d1+e1+f1
+      a=a1+a2;b=b1+b2;c=c1+c2;d=d1+d2;e=e1+e2;f=f1+f2
+      sum=a1+b1+c1+d1+e1+f1
 
-       T12=F3(a1,b1,c1,d1,e1,f1)*Fr2(c,b,a,f,e,d)
-       T13=F3(b1,a1,c1,d1,f1,e1)*Fr2(a,c,b,e,d,f)
-       T14=F3(c1,b1,a1,f1,e1,d1)*Fr2(a,b,c,d,e,f)
-       T23=F3(d1,a1,e1,b1,f1,c1)*Fr2(a,e,d,c,b,f)
-       T24=F3(e1,a1,d1,c1,f1,b1)*Fr2(a,d,e,b,c,f)
-       T34=F3(f1,b1,d1,c1,e1,a1)*Fr2(b,d,f,a,c,e)
+      T12=F3(a1,b1,c1,d1,e1,f1)*Fr2(c,b,a,f,e,d)
+      T13=F3(b1,a1,c1,d1,f1,e1)*Fr2(a,c,b,e,d,f)
+      T14=F3(c1,b1,a1,f1,e1,d1)*Fr2(a,b,c,d,e,f)
+      T23=F3(d1,a1,e1,b1,f1,c1)*Fr2(a,e,d,c,b,f)
+      T24=F3(e1,a1,d1,c1,f1,b1)*Fr2(a,d,e,b,c,f)
+      T34=F3(f1,b1,d1,c1,e1,a1)*Fr2(b,d,f,a,c,e)
 
-       kin_part=6.0*sum*overlap(a1,b1,c1,d1,e1,f1,a2,b2,c2,d2,e2,f2)-2*(T12+T13+T14+T23+T24+T34)
-        
-       return
-       end function
+      kin_part=6.0*sum*overlap(a1,b1,c1,d1,e1,f1,a2,b2,c2,d2,e2,f2)-2*(T12+T13+T14+T23+T24+T34)
+      
+      return
+      end function
 *************************************************************************
       real(8) function pfv1(a1,b1,c1,d1,e1,f1,a2,b2,c2,d2,e2,f2)
       use prmts
@@ -92,7 +92,7 @@
       pd24=Frinv(a,de,e,b,c,f)
       pd34=Frinv(b,de,f,a,c,e)
 
-      pfv1=(NC**2-1)*(pd12+pd34+pd14+pd23)/NC-(NC-1)*(2*pd13+2*pd24-pd23-pd34-pd12)/NC
+      pfv1=(NC**2-1)*(pd12+pd34+pd14+pd23)/NC-(NC-1)*(2*pd13+2*pd24-pd23-pd34-pd12-pd34)/NC
       pfv1=pfv1*(-0.25)
       end function
 *************************************************************************
@@ -113,7 +113,7 @@
       pd24=Frinv(a,de,e,b,c,f)
       pd34=Frinv(b,de,f,a,c,e)
       
-      pfv2=(NC**2-1)*(pd12+pd34+pd14+pd23)/NC+(NC+1)*(2*pd13+2*pd24-pd23-pd34-pd12)/NC
+      pfv2=(NC**2-1)*(pd12+pd34+pd14+pd23)/NC+(NC+1)*(2*pd13+2*pd24-pd23-pd34-pd12-pd14)/NC
       pfv2=pfv2*(-0.25)
       
       return
