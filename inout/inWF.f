@@ -5,24 +5,31 @@
       CHARACTER( LEN = 30 ) :: in_file
       integer i,j,switch
       real(8) b,a,dev,energy,old_NC
-      WRITE(*,*) 'Reading file : ', in_file
-      OPEN(UNIT=9,FILE=in_file,FORM='UNFORMATTED')
-      b=3d-2;a=1d-9
-      read(9) N
-      read(9) energy
-      read(9) old_NC
-      write(*,*) 'N: ', N
-      write(*,*) 'newN ',newN
-      write(*,*) 'Previous best energy: ', energy,' for NC: ', NC
-      if (allocated(phi)) then
-         continue
+      if(switch.eq.1)then
+         WRITE(*,*) 'Reading file : ', in_file
+         OPEN(UNIT=9,FILE=in_file,FORM='UNFORMATTED')
+         b=3d-2;a=1d-9
+
+         read(9) N
+         read(9) energy
+         read(9) old_NC
+         write(*,*) 'N: ', N
+         write(*,*) 'newN ',newN
+         write(*,*) 'Previous best energy: ', energy,' for NC: ', NC
       else
-         ALLOCATE(PHI(newN,7))
-         ALLOCATE(BPHI(newN,7))
-         write(*,*) 'Allocated: PHI, BPHI'
+         N=0;energy=0.0d0;old_NC=3
       endif
+
+      if (allocated(phi)) then
+            continue
+         else
+            ALLOCATE(PHI(newN,7))
+            ALLOCATE(BPHI(newN,7))
+            write(*,*) 'Allocated: PHI, BPHI'
+      endif
+
       if ((switch.eq.1).and.(N.ge.newN)) then
-         write(*,*) 'Going from file WF'
+         write(*,*) 'Resuming from input file WF'
 c     start with parameter in the WF.dat file
          do i=1,N/2
             read(9) PHI(i,1),PHI(i,2),PHI(i,3),PHI(i,4),PHI(i,5),PHI(i,6),PHI(i,7)

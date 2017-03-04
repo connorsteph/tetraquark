@@ -76,6 +76,7 @@
       return
       end function
 *************************************************************************
+c     1,3 + 2,4 -
       real(8) function pfv1(a1,b1,c1,d1,e1,f1,a2,b2,c2,d2,e2,f2)
       use prmts
       use tables
@@ -92,8 +93,13 @@
       pd24=Frinv(a,de,e,b,c,f)
       pd34=Frinv(b,de,f,a,c,e)
 
-      pfv1=(NC**2-1)*(pd12+pd34+pd14+pd23)/NC-(NC-1)*(2*pd13+2*pd24-pd23-pd34-pd12-pd34)/NC
-      pfv1=pfv1*(-0.25)
+c      pfv1=(NC**2-1)*(pd12+pd34+pd14+pd23)/NC-(NC-1)*(2*pd13+2*pd24-pd23-pd34-pd12-pd14)/NC
+c      pfv1=pfv1*(-0.25)
+
+c      pfv1=(NC**2-1)*(pd12+pd34)/NC-(NC-1)*(-pd34-pd12)/NC
+c      pfv1=pfv1*(-0.25)
+      pfv1 = -pd12-pd34
+      
       end function
 *************************************************************************
       real(8) function pfv2(a1,b1,c1,d1,e1,f1,a2,b2,c2,d2,e2,f2)
@@ -113,9 +119,14 @@
       pd24=Frinv(a,de,e,b,c,f)
       pd34=Frinv(b,de,f,a,c,e)
       
-      pfv2=(NC**2-1)*(pd12+pd34+pd14+pd23)/NC+(NC+1)*(2*pd13+2*pd24-pd23-pd34-pd12-pd14)/NC
-      pfv2=pfv2*(-0.25)
+c      pfv2=(NC**2-1)*(pd12+pd34+pd14+pd23)/NC+(NC+1)*(2*pd13+2*pd24-pd23-pd34-pd12-pd14)/NC
+c      pfv2=pfv2*(-0.25)
+      pfv2=-pd12-pd34
       
+c      pfv2=(NC**2-1)*(pd12+pd34)/NC+(NC+1)*(-pd34-pd12)/NC
+c      pfv2=pfv2*(-0.25)
+      
+
       return
       end function
 
@@ -137,6 +148,6 @@
 
       pfc=sqrt(NC**2-1)*(pd12+pd34-pd14-pd23)
       pfc=pfc*(-0.25)
-
+c      pfc = 0
       return 
       end function

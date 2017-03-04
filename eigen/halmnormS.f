@@ -47,8 +47,53 @@ c     do i=idxmin,idxmax
             f2 = PHI(j,6)
 
             val1 = 0; val2 = 0;
-            
-            do q=1,8
+c     sgn_ui & sgn_wi here are the parities of the the transformation that creates
+c     each term in the various wavefunction symmetries. 
+
+
+c     Currently the wavefunction is u<+->
+c$$$            do q=1,8
+c$$$               select case(q)
+c$$$            case(1)             !1234
+c$$$               aq=a1;bq=b1;cq=c1;dq=d1;eq=e1;fq=f1;sgn_ui=1.0;sgn_wi=1.0
+c$$$            case(2)             !3214
+c$$$               aq=d1;bq=b1;cq=f1;dq=a1;eq=e1;fq=c1;sgn_ui=1.0;sgn_wi=-1.0 
+c$$$            case(3)             !3412
+c$$$               aq=f1;bq=b1;cq=d1;dq=c1;eq=e1;fq=a1;sgn_ui=-1.0;sgn_wi=-1.0
+c$$$            case(4)             !1432
+c$$$               aq=c1;bq=b1;cq=a1;dq=f1;eq=e1;fq=d1;sgn_ui=-1.0;sgn_wi=1.0
+c$$$            case(5)             !2143
+c$$$               aq=a1;bq=e1;cq=d1;dq=c1;eq=b1;fq=f1;sgn_ui=1.0;sgn_wi=1.0
+c$$$            case(6)             !4123
+c$$$               aq=c1;bq=e1;cq=f1;dq=a1;eq=b1;fq=d1;sgn_ui=1.0;sgn_wi=-1.0
+c$$$            case(7)             !4321
+c$$$               aq=f1;bq=e1;cq=c1;dq=d1;eq=b1;fq=a1;sgn_ui=-1.0;sgn_wi=-1.0
+c$$$            case(8)             !2341
+c$$$               aq=d1;bq=e1;cq=a1;dq=f1;eq=b1;fq=c1;sgn_ui=-1.0;sgn_wi=1.0
+c$$$            end select
+c$$$            
+c$$$            do r=1,8
+c$$$              select case(r)
+c$$$            case(1)             !1234
+c$$$               ar=a2;br=b2;cr=c2;dr=d2;er=e2;fr=f2;sgn_uj=1.0;sgn_wj=1.0
+c$$$            case(2)             !3214
+c$$$               ar=d2;br=b2;cr=f2;dr=a2;er=e2;fr=c2;sgn_uj=1.0;sgn_wj=-1.0 
+c$$$            case(3)             !3412
+c$$$               ar=f2;br=b2;cr=d2;dr=c2;er=e2;fr=a2;sgn_uj=-1.0;sgn_wj=-1.0
+c$$$            case(4)             !1432
+c$$$               ar=c2;br=b2;cr=a2;dr=f2;er=e2;fr=d2;sgn_uj=-1.0;sgn_wj=1.0
+c$$$            case(5)             !2143
+c$$$               ar=a2;br=e2;cr=d2;dr=c2;er=b2;fr=f2;sgn_uj=1.0;sgn_wj=1.0
+c$$$            case(6)             !4123
+c$$$               ar=c2;br=e2;cr=f2;dr=a2;er=b2;fr=d2;sgn_uj=1.0;sgn_wj=-1.0
+c$$$            case(7)             !4321
+c$$$               ar=f2;br=e2;cr=c2;dr=d2;er=b2;fr=a2;sgn_uj=-1.0;sgn_wj=-1.0
+c$$$            case(8)             !2341
+c$$$               ar=d2;br=e2;cr=a2;dr=f2;er=b2;fr=c2;sgn_uj=-1.0;sgn_wj=1.0
+c$$$            End select
+
+c     u<++>
+            do q=1,1
                select case(q)
             case(1)             !1234
                aq=a1;bq=b1;cq=c1;dq=d1;eq=e1;fq=f1;sgn_ui=1.0;sgn_wi=1.0
@@ -68,8 +113,8 @@ c     do i=idxmin,idxmax
                aq=d1;bq=e1;cq=a1;dq=f1;eq=b1;fq=c1;sgn_ui=1.0;sgn_wi=-1.0
             end select
             
-            do r=1,8
-               select case(r)
+            do r=1,1
+              select case(r)
             case(1)             !1234
                ar=a2;br=b2;cr=c2;dr=d2;er=e2;fr=f2;sgn_uj=1.0;sgn_wj=1.0
             case(2)             !3214
@@ -87,6 +132,9 @@ c     do i=idxmin,idxmax
             case(8)             !2341
                ar=d2;br=e2;cr=a2;dr=f2;er=b2;fr=c2;sgn_uj=1.0;sgn_wj=-1.0
             End select
+
+
+
 
 
             if (i.LE.(N*0.5)) then

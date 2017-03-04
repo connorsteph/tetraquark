@@ -1,12 +1,12 @@
-EP       =  -3.0d-2
+EP       =  -2.0d0
 foutWF   =  1
 ***********************************************************
-infileWF = outdata/WF_unsym.dat
-outfileWF= outdata/WF_u_sym.dat
+infileWF = outdata/WF_test.dat
+outfileWF= outdata/WF_test.dat
 ***********************************************************
 myacc    = 1.d-8
 multEE   = 0.125d0
-ESCALE   = 50.0d0
+ESCALE   = 50.1d0
 MAXIT    = 3
 IPRINT   = 0
 ICON     = 1
